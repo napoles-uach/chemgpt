@@ -1,3 +1,4 @@
 openai==0.28
 rdkit
-stmol
+stmol==0.0.9
+py3dmol
