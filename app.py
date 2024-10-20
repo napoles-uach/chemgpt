@@ -3,6 +3,7 @@ import requests
 from rdkit import Chem
 from rdkit.Chem import AllChem, MolToPDBBlock
 from stmol import showmol
+import py3Dmol
 import openai
 
 # Configura tu clave de OpenAI
