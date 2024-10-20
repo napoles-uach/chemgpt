@@ -5,6 +5,7 @@ from rdkit.Chem import AllChem, MolToPDBBlock
 from stmol import showmol
 import py3Dmol
 import openai
+from openai import OpenAI
 
 # Configura tu clave de OpenAI
 openai.api_key = st.secrets['api_key']
