@@ -52,7 +52,7 @@ def generar_codigo_molecular(solicitud):
 
     # Llamar a la API de OpenAI para generar el código
     response = openai.Completion.create(
-        engine="text-davinci-003",  # O el modelo que prefieras
+        engine="gpt-4o-mini",  # O el modelo que prefieras
         prompt=prompt,
         max_tokens=800,
         temperature=0
