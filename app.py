@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 from rdkit import Chem
 from rdkit.Chem import AllChem, MolToPDBBlock
-import py3Dmol
+from stmol import showmol
 import openai
 
 # Configura tu clave de OpenAI
@@ -43,7 +43,7 @@ def generar_codigo_molecular(solicitud):
         viewer.addModel(pdb_block, 'pdb')
         viewer.setStyle({'stick':{}})
         viewer.zoomTo()
-        viewer.show()
+        showmol(viewer)
     except:
         print("Error al generar la estructura 3D")
     """ + solicitud + """
@@ -51,23 +51,23 @@ def generar_codigo_molecular(solicitud):
     """
 
     # Llamar a la API de OpenAI para generar el código
-    response = openai.Completion.create(
-        engine="gpt-4o-mini",  # O el modelo que prefieras
-        prompt=prompt,
+    # Inicializar el cliente de OpenAI con tu clave de API
+    client = OpenAI(api_key=st.secrets['api_key'])
+    completion = client.chat.completions.create(
+        model="gpt-4o-mini",  # O el modelo que prefieras, como "gpt-3.5-turbo-16k"
+        messages=[
+            {"role": "system", "content": "You are a assistant."},
+            {"role": "user", "content": prompt}
+        ],
         max_tokens=800,
         temperature=0
     )
-    
-    return response.choices[0].text.strip()
 
-# Función para mostrar la molécula generada
-def mostrar_molecula(mol):
-    pdb_block = MolToPDBBlock(mol)
-    viewer = py3Dmol.view(width=400, height=400)
-    viewer.addModel(pdb_block, 'pdb')
-    viewer.setStyle({'stick': {}})
-    viewer.zoomTo()
-    viewer.show()
+    codigo_generado = completion.choices[0].message.content.strip()
+    print("Código generado:\n", codigo_generado)
+    # Ejecutar el código generado en un entorno seguro
+    # En este ejemplo, asumimos que es seguro ejecutarlo
+    exec(str(codigo_generado))
 
 # Interfaz de usuario en Streamlit
 st.title("Generador de Estructuras Moleculares")
