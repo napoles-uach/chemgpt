@@ -1,4 +1,7 @@
 openai==0.28
 rdkit
-stmol==0.0.9
+stmol
 py3dmol
+ipyspeck(==0.6.1)
+ipywidgets(==7.6.3)
+ipython_genutils
