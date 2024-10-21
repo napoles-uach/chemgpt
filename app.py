@@ -73,7 +73,7 @@ def generar_codigo_molecular(solicitud):
 
 # Interfaz de usuario en Streamlit
 st.title("Generador de Estructuras Moleculares")
-nombre_molecula = st.text_input("Introduce el nombre de la molécula:", "aspirin")
+nombre_molecula = st.text_input("Introduce el nombre de la molécula", "aspirina")
 
 if st.button("Generar estructura"):
     with st.spinner('Generando código y ejecutando...'):
