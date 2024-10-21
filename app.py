@@ -86,4 +86,4 @@ if st.button("Generar estructura"):
             exec(codigo_generado)  # Ejecutar el código generado en un entorno seguro
             st.success(f"Estructura de {nombre_molecula} generada.")
         except Exception as e:
-            st.error(f"Error al ejecutar el código: {e}")
+            st.error(f"Error al ejecutar el código: Intenta con otra solicitud")
